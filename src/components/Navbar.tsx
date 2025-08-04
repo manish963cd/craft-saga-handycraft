@@ -5,11 +5,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'Products', href: '/products' },
+    { name: 'Shop', href: '/shop' },
     { name: 'Crafts', href: '/crafts' },
     { name: 'Stories', href: '/stories' },
-    { name: 'Districts', href: '/districts' },
     { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
