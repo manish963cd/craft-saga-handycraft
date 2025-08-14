@@ -27,6 +27,14 @@ export const useAuth = () => {
   }, [])
 
   const signUp = async (email, password, metadata = {}) => {
+    // Demo mode - simulate successful signup
+    if (!import.meta.env.VITE_SUPABASE_URL) {
+      return { 
+        data: { user: { email, user_metadata: metadata } }, 
+        error: null 
+      }
+    }
+    
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -38,6 +46,20 @@ export const useAuth = () => {
   }
 
   const signIn = async (email, password) => {
+    // Demo mode - simulate successful signin
+    if (!import.meta.env.VITE_SUPABASE_URL) {
+      const mockUser = { 
+        email, 
+        user_metadata: { 
+          first_name: 'Demo', 
+          last_name: 'User',
+          full_name: 'Demo User'
+        } 
+      }
+      setUser(mockUser)
+      return { data: { user: mockUser }, error: null }
+    }
+    
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password
@@ -46,6 +68,12 @@ export const useAuth = () => {
   }
 
   const signOut = async () => {
+    // Demo mode - clear user state
+    if (!import.meta.env.VITE_SUPABASE_URL) {
+      setUser(null)
+      return { error: null }
+    }
+    
     const { error } = await supabase.auth.signOut()
     return { error }
   }
