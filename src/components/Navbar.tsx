@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/hooks/useAuth';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { User, LogOut, Heart, ShoppingBag } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { name: 'Shop', href: '/shop' },
@@ -47,11 +52,66 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <Button className="bg-gradient-saffron hover:shadow-cultural transition-all duration-300">
-              Explore Heritage
-            </Button>
+          {/* Desktop Auth */}
+          <div className="hidden md:flex items-center space-x-4">
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src={user.user_metadata?.avatar_url} />
+                      <AvatarFallback className="bg-gradient-saffron text-primary-foreground">
+                        {user.user_metadata?.first_name?.charAt(0) || user.email?.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56" align="end">
+                  <DropdownMenuLabel className="font-normal">
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">
+                        {user.user_metadata?.full_name || 'User'}
+                      </p>
+                      <p className="text-xs leading-none text-muted-foreground">
+                        {user.email}
+                      </p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <a href="/profile" className="cursor-pointer">
+                      <User className="mr-2 h-4 w-4" />
+                      Profile
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <ShoppingBag className="mr-2 h-4 w-4" />
+                    Orders
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Heart className="mr-2 h-4 w-4" />
+                    Wishlist
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={() => signOut()}
+                    className="cursor-pointer text-destructive focus:text-destructive"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Button variant="ghost" asChild>
+                  <a href="/login">Sign In</a>
+                </Button>
+                <Button className="bg-gradient-saffron hover:shadow-cultural transition-all duration-300" asChild>
+                  <a href="/signup">Join Us</a>
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -80,10 +140,30 @@ const Navbar = () => {
                   {item.name}
                 </a>
               ))}
-              <div className="pt-2">
-                <Button className="w-full bg-gradient-saffron hover:shadow-cultural transition-all duration-300">
-                  Explore Heritage
-                </Button>
+              <div className="pt-2 space-y-2">
+                {user ? (
+                  <>
+                    <a href="/profile" className="text-foreground hover:text-primary hover:bg-muted block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
+                      Profile
+                    </a>
+                    <Button 
+                      onClick={() => signOut()}
+                      variant="outline" 
+                      className="w-full"
+                    >
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button variant="outline" className="w-full" asChild>
+                      <a href="/login">Sign In</a>
+                    </Button>
+                    <Button className="w-full bg-gradient-saffron hover:shadow-cultural transition-all duration-300" asChild>
+                      <a href="/signup">Join Us</a>
+                    </Button>
+                  </>
+                )}
               </div>
             </div>
           </div>
