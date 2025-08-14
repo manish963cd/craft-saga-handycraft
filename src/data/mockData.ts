@@ -3,11 +3,24 @@ export interface Product {
   name: string;
   price: number;
   image: string;
+  images: string[];
   district: string;
   craft: string;
   artisan: string;
   description: string;
+  longDescription: string;
+  material: string;
+  dimensions: string;
+  weight: string;
   giTag?: boolean;
+  artisanInfo: {
+    name: string;
+    experience: string;
+    specialty: string;
+    image: string;
+    bio: string;
+  };
+  relatedStoryId?: string;
 }
 
 export interface Craft {
@@ -39,62 +52,137 @@ export const mockProducts: Product[] = [
     name: "Banarasi Silk Saree",
     price: 15000,
     image: "/placeholder.svg",
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     district: "Varanasi",
     craft: "Silk Weaving",
     artisan: "Ramesh Kumar",
     description: "Exquisite handwoven Banarasi silk saree with intricate gold zari work.",
-    giTag: true
+    longDescription: "This magnificent Banarasi silk saree represents the pinnacle of Indian textile artistry. Handwoven using traditional techniques passed down through generations, each saree takes approximately 15-20 days to complete. The intricate gold zari work features traditional motifs inspired by Mughal art, including paisleys, florals, and geometric patterns. The rich silk fabric drapes beautifully and the lustrous finish makes it perfect for special occasions and celebrations.",
+    material: "Pure Silk with Gold Zari",
+    dimensions: "6.5 meters length, 1.2 meters width",
+    weight: "800 grams",
+    giTag: true,
+    artisanInfo: {
+      name: "Ramesh Kumar",
+      experience: "25 years",
+      specialty: "Banarasi Silk Weaving",
+      image: "/placeholder.svg",
+      bio: "Master weaver from Varanasi with 25 years of experience in creating exquisite Banarasi silk sarees. Son of a renowned weaver, Ramesh has dedicated his life to preserving this ancient art form."
+    },
+    relatedStoryId: "3"
   },
   {
     id: "2", 
     name: "Chikankari Kurta",
     price: 3500,
     image: "/placeholder.svg",
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     district: "Lucknow",
     craft: "Chikankari",
     artisan: "Fatima Begum",
-    description: "Traditional white cotton kurta with delicate hand-embroidered chikankari work."
+    description: "Traditional white cotton kurta with delicate hand-embroidered chikankari work.",
+    longDescription: "This elegant chikankari kurta showcases the refined embroidery tradition of Lucknow. Each piece is meticulously hand-embroidered using traditional white thread on premium cotton fabric. The intricate patterns include shadow work, French knots, and delicate mesh patterns that create a stunning visual texture. Perfect for both casual and formal wear.",
+    material: "Premium Cotton with Cotton Thread",
+    dimensions: "Size M: Chest 40 inches, Length 42 inches",
+    weight: "300 grams",
+    artisanInfo: {
+      name: "Fatima Begum",
+      experience: "18 years",
+      specialty: "Chikankari Embroidery",
+      image: "/placeholder.svg",
+      bio: "Expert chikankari artisan from Lucknow, known for her delicate hand embroidery work. Fatima has trained over 50 women in this traditional craft."
+    },
+    relatedStoryId: "1"
   },
   {
     id: "3",
     name: "Moradabad Brass Pot",
     price: 2500,
-    image: "/placeholder.svg", 
+    image: "/placeholder.svg",
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     district: "Moradabad",
     craft: "Brass Work",
     artisan: "Shahid Ali",
-    description: "Handcrafted brass water pot with traditional engravings."
+    description: "Handcrafted brass water pot with traditional engravings.",
+    longDescription: "This beautiful brass water pot represents the finest tradition of Moradabad metalwork. Hand-hammered from pure brass and featuring intricate engraved patterns, this pot is both functional and decorative. The traditional designs are inspired by Mughal and Persian art, making each piece a unique work of art.",
+    material: "Pure Brass",
+    dimensions: "Height: 12 inches, Diameter: 8 inches",
+    weight: "1.2 kg",
+    artisanInfo: {
+      name: "Shahid Ali",
+      experience: "22 years",
+      specialty: "Brass Metalwork",
+      image: "/placeholder.svg",
+      bio: "Third-generation brass artisan from Moradabad, specializing in traditional engraving and hammering techniques. His family has been creating brass artifacts for over 60 years."
+    },
+    relatedStoryId: "2"
   },
   {
     id: "4",
     name: "Azamgarh Black Pottery",
     price: 1200,
     image: "/placeholder.svg",
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     district: "Azamgarh", 
     craft: "Black Pottery",
     artisan: "Gopal Singh",
-    description: "Unique black pottery vase made using traditional techniques."
+    description: "Unique black pottery vase made using traditional techniques.",
+    longDescription: "This striking black pottery vase showcases the unique ceramic tradition of Azamgarh. Created using special clay and fired in traditional kilns, the distinctive black finish is achieved through a special smoking process. Each piece is hand-shaped and features subtle textural patterns.",
+    material: "Special Black Clay",
+    dimensions: "Height: 10 inches, Width: 6 inches",
+    weight: "800 grams",
+    artisanInfo: {
+      name: "Gopal Singh",
+      experience: "15 years",
+      specialty: "Black Pottery",
+      image: "/placeholder.svg",
+      bio: "Skilled potter from Azamgarh, known for his expertise in creating distinctive black pottery using traditional smoking techniques."
+    }
   },
   {
     id: "5",
     name: "Firozabad Glass Bangles",
     price: 800,
     image: "/placeholder.svg",
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     district: "Firozabad",
     craft: "Glass Work", 
     artisan: "Sunita Devi",
-    description: "Colorful handmade glass bangles from the glass city of India."
+    description: "Colorful handmade glass bangles from the glass city of India.",
+    longDescription: "These vibrant glass bangles are handcrafted in Firozabad, known as the 'Glass City of India'. Each bangle is carefully shaped and colored using traditional glass-blowing techniques. The set includes multiple colors and patterns, perfect for traditional Indian attire.",
+    material: "Colored Glass",
+    dimensions: "Standard size set (2.2 to 2.8 inches diameter)",
+    weight: "150 grams (set of 12)",
+    artisanInfo: {
+      name: "Sunita Devi",
+      experience: "12 years",
+      specialty: "Glass Bangle Making",
+      image: "/placeholder.svg",
+      bio: "Expert glass artisan from Firozabad, specializing in creating colorful glass bangles and decorative items using traditional furnace techniques."
+    }
   },
   {
     id: "6",
     name: "Mirzapur Carpet",
     price: 25000,
     image: "/placeholder.svg",
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     district: "Mirzapur",
     craft: "Carpet Weaving",
     artisan: "Abdul Rahman",
     description: "Hand-knotted wool carpet with traditional Persian designs.",
-    giTag: true
+    longDescription: "This luxurious hand-knotted carpet from Mirzapur features intricate Persian-inspired patterns and is woven using the finest wool. Each carpet takes several months to complete and contains thousands of individually tied knots. The rich colors and detailed motifs make it a perfect centerpiece for any room.",
+    material: "Pure Wool with Silk Highlights",
+    dimensions: "6 feet x 9 feet",
+    weight: "8 kg",
+    giTag: true,
+    artisanInfo: {
+      name: "Abdul Rahman",
+      experience: "30 years",
+      specialty: "Hand-knotted Carpet Weaving",
+      image: "/placeholder.svg",
+      bio: "Master carpet weaver from Mirzapur with three decades of experience in creating hand-knotted carpets. His work is renowned for its intricate patterns and superior quality."
+    }
   }
 ];
 
