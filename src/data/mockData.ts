@@ -219,6 +219,126 @@ export const mockCrafts: Craft[] = [
   }
 ];
 
+export interface Order {
+  id: string;
+  orderNumber: string;
+  date: string;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  total: number;
+  items: OrderItem[];
+  shippingAddress: {
+    name: string;
+    address: string;
+    city: string;
+    state: string;
+    pincode: string;
+  };
+  trackingNumber?: string;
+  estimatedDelivery?: string;
+}
+
+export interface OrderItem {
+  productId: string;
+  productName: string;
+  productImage: string;
+  quantity: number;
+  price: number;
+  artisan: string;
+}
+
+export const mockOrders: Order[] = [
+  {
+    id: "ord-001",
+    orderNumber: "ODOP-2024-001",
+    date: "2024-01-20T10:30:00Z",
+    status: "delivered",
+    total: 18500,
+    items: [
+      {
+        productId: "1",
+        productName: "Banarasi Silk Saree",
+        productImage: "/placeholder.svg",
+        quantity: 1,
+        price: 15000,
+        artisan: "Ramesh Kumar"
+      },
+      {
+        productId: "2",
+        productName: "Chikankari Kurta",
+        productImage: "/placeholder.svg", 
+        quantity: 1,
+        price: 3500,
+        artisan: "Fatima Begum"
+      }
+    ],
+    shippingAddress: {
+      name: "John Doe",
+      address: "123 Heritage Lane",
+      city: "Delhi",
+      state: "Delhi",
+      pincode: "110001"
+    },
+    trackingNumber: "TR123456789",
+    estimatedDelivery: "2024-01-25"
+  },
+  {
+    id: "ord-002",
+    orderNumber: "ODOP-2024-002",
+    date: "2024-01-25T14:15:00Z",
+    status: "shipped",
+    total: 2500,
+    items: [
+      {
+        productId: "3",
+        productName: "Moradabad Brass Pot",
+        productImage: "/placeholder.svg",
+        quantity: 1,
+        price: 2500,
+        artisan: "Shahid Ali"
+      }
+    ],
+    shippingAddress: {
+      name: "John Doe",
+      address: "123 Heritage Lane",
+      city: "Delhi",
+      state: "Delhi", 
+      pincode: "110001"
+    },
+    trackingNumber: "TR987654321",
+    estimatedDelivery: "2024-01-30"
+  },
+  {
+    id: "ord-003",
+    orderNumber: "ODOP-2024-003",
+    date: "2024-01-28T09:45:00Z",
+    status: "processing",
+    total: 1200,
+    items: [
+      {
+        productId: "4",
+        productName: "Azamgarh Black Pottery",
+        productImage: "/placeholder.svg",
+        quantity: 1,
+        price: 1200,
+        artisan: "Gopal Singh"
+      }
+    ],
+    shippingAddress: {
+      name: "John Doe",
+      address: "123 Heritage Lane",
+      city: "Delhi",
+      state: "Delhi",
+      pincode: "110001"
+    },
+    estimatedDelivery: "2024-02-05"
+  }
+];
+
+export const mockWishlist: Product[] = [
+  mockProducts[4], // Firozabad Glass Bangles
+  mockProducts[5]  // Mirzapur Carpet
+];
+
 export const mockStories: Story[] = [
   {
     id: "1",

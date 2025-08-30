@@ -7,9 +7,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useToast } from '@/hooks/use-toast'
-import { User, Mail, Phone, MapPin, Heart, ShoppingBag } from 'lucide-react'
+import { User, Mail, Phone, MapPin, Heart, ShoppingBag, Settings } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { OrdersSection } from '@/components/OrdersSection'
+import { WishlistSection } from '@/components/WishlistSection'
+import { SettingsSection } from '@/components/SettingsSection'
 
 const Profile = () => {
   const { user, updateProfile } = useAuth()
@@ -239,16 +242,7 @@ const Profile = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-12">
-                    <ShoppingBag className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                    <h3 className="text-lg font-medium text-muted-foreground">No orders yet</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Start exploring our beautiful heritage crafts
-                    </p>
-                    <Button className="bg-gradient-saffron hover:shadow-cultural transition-all duration-300">
-                      <a href="/shop">Browse Products</a>
-                    </Button>
-                  </div>
+                  <OrdersSection />
                 </CardContent>
               </Card>
             </TabsContent>
@@ -265,16 +259,7 @@ const Profile = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-12">
-                    <Heart className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                    <h3 className="text-lg font-medium text-muted-foreground">Your wishlist is empty</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Save products you love to view them later
-                    </p>
-                    <Button className="bg-gradient-saffron hover:shadow-cultural transition-all duration-300">
-                      <a href="/shop">Discover Products</a>
-                    </Button>
-                  </div>
+                  <WishlistSection />
                 </CardContent>
               </Card>
             </TabsContent>
@@ -283,35 +268,15 @@ const Profile = () => {
               <Card className="shadow-warm">
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <User className="h-5 w-5 mr-2" />
+                    <Settings className="h-5 w-5 mr-2" />
                     Account Settings
                   </CardTitle>
                   <CardDescription>
-                    Manage your account preferences
+                    Manage your account preferences and security
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
-                    <div>
-                      <h4 className="font-medium">Email Notifications</h4>
-                      <p className="text-sm text-muted-foreground">Receive updates about orders and new products</p>
-                    </div>
-                    <Button variant="outline">Configure</Button>
-                  </div>
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
-                    <div>
-                      <h4 className="font-medium">Privacy Settings</h4>
-                      <p className="text-sm text-muted-foreground">Control your data and privacy preferences</p>
-                    </div>
-                    <Button variant="outline">Manage</Button>
-                  </div>
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
-                    <div>
-                      <h4 className="font-medium">Delete Account</h4>
-                      <p className="text-sm text-muted-foreground">Permanently delete your account and data</p>
-                    </div>
-                    <Button variant="destructive">Delete</Button>
-                  </div>
+                <CardContent>
+                  <SettingsSection />
                 </CardContent>
               </Card>
             </TabsContent>
